@@ -7,8 +7,7 @@ public class BowlingController : MonoBehaviour
     public GameObject Ball;
     Rigidbody rbBall;
     public float power = 10f;
-    private int shotCount;
-    const int shotCountMax = 3;
+    public int shotCount = 0;
     public GameObject ballNumbertext;
 
     CharacterController ccPlayer;
@@ -23,27 +22,33 @@ public class BowlingController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        bowlingThrow();
+        BowlingThrow();
     }
 
-    public void bowlingThrow()
+    public void BowlingThrow()
     {
         if (Input.GetMouseButtonDown(0))    // マウスを左クリックした時
         {
             Vector3 arm = transform.position;
             arm.y -= -1;
 
-            shotCount++;
-
-            if (shotCount <= shotCountMax)
+            for (int i = shotCount; i < 4; shotCount++)
             {
-                rbBall = Instantiate(Ball, arm, transform.rotation).GetComponent<Rigidbody>(); // 玉を生成
-                rbBall.AddForce(ccPlayer.velocity * power + transform.forward, ForceMode.Impulse); // プレイヤーの前方に力を加える
+                if (shotCount <= 3)
+                {
+                    rbBall = Instantiate(Ball, arm, transform.rotation).GetComponent<Rigidbody>(); // 玉を生成
+                    rbBall.AddForce(ccPlayer.velocity * power + transform.forward, ForceMode.Impulse); // プレイヤーの前方に力を加える
+                }
+
             }
+
+
+
 
 
         }
 
     }
+
 
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using JetBrains.Annotations;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,7 +11,7 @@ public class GameScript3 : MonoBehaviour
     GameObject[] pins;
     public float q = 0.01f;
     public GameObject gameCleartext;
-
+    public GameObject RetryButton;
     // Start is called before the first frame update
     void Start()
     {
@@ -61,5 +62,12 @@ public class GameScript3 : MonoBehaviour
             }
             return n; // 立っているピンの個数を返す
         }
+
+     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+
     }
+
 }
