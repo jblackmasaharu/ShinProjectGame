@@ -32,14 +32,12 @@ public class BowlingController : MonoBehaviour
             Vector3 arm = transform.position;
             arm.y -= -1;
 
-            for (int i = shotCount; i < 4; shotCount++)
-            {
-                if (shotCount <= 3)
-                {
-                    rbBall = Instantiate(Ball, arm, transform.rotation).GetComponent<Rigidbody>(); // 玉を生成
-                    rbBall.AddForce(ccPlayer.velocity * power + transform.forward, ForceMode.Impulse); // プレイヤーの前方に力を加える
-                }
+            shotCount++;
 
+            if (shotCount <= 3)
+            {
+                rbBall = Instantiate(Ball, arm, transform.rotation).GetComponent<Rigidbody>(); // 玉を生成
+                rbBall.AddForce(ccPlayer.velocity * power + transform.forward, ForceMode.Impulse); // プレイヤーの前方に力を加える
             }
 
 
